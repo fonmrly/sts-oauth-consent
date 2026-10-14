@@ -41,6 +41,10 @@ GitHub Pagesの公開元は **Deploy from a branch → main → / (root)**。ビ
 
 ## 検証範囲
 
-短いブラウザー不在テストで、ログイン後の詳細表示、ボタンクリックまで同意POSTを送らないこと、approve/deny、XSS文字列のテキスト表示、異常な戻り先の拒否、ページ離脱時の消去を確認します。公開後は同意画面のHTTP GETが **200 / text/html** になることを実測します。本人設定と実際のChatGPT OAuth認証が完了するまでは、実機の一連の認証をPASSとしません。
+2026-10-14にJavaScript構文、HTMLのローカル参照とCSP、15件のブラウザー不在VMテストを確認済み（15秒以内）。ログイン後の詳細表示、ボタンクリックまで同意POSTを送らないこと、approve/deny、XSS文字列のテキスト表示、異常な戻り先の拒否、ページ離脱時の消去、設定不足・認証エラーを検証しました。stagingの秘密値・個人メールアドレスscanもPASSです。
+
+2026-10-14 13:42:39 UTC、公開同意画面の実HTTP GETは **200 / `text/html; charset=utf-8`**。JS・CSS・configもGET 200で、配信内容はcommit済みsourceと一致しました。
+
+現在の`config.js`はPublishable keyのplaceholderです。本人設定と実際のブラウザー・ChatGPT OAuth認証は未検証であり、公開配信の成功を実機認証のPASSとはしません。
 
 公式資料: [OAuth Serverセットアップ](https://supabase.com/docs/guides/auth/oauth-server/getting-started)、[OAuthフロー](https://supabase.com/docs/guides/auth/oauth-server/oauth-flows)、[Edge FunctionsのHTML配信制限](https://supabase.com/docs/guides/functions/http-methods)。
