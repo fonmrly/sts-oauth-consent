@@ -10,7 +10,7 @@ STS専用MCPの公開静的OAuth同意UI。外部ライブラリ・CDN・トラ�
 
 ## 本人が行う最小セットアップ
 
-1. このprojectのSupabase Dashboardの **Settings → API Keys** にあるブラウザー向け **Publishable key**（`sb_publishable_…`）を、`config.js` の `publishableKey` placeholderへ入れて、このrepositoryの`main`へpushします。公開可能なこのキーだけを入れます。secret key、service_role key、JWT、パスワードは入れません。
+1. `config.js`のブラウザー向け **Publishable key**は設定済みです。このprojectの公開Auth APIが受理することを確認しました。キーを変更する場合だけ、Supabase Dashboardの **Settings → API Keys** にある **Publishable key**（`sb_publishable_…`）を`publishableKey`へ入れて、このrepositoryの`main`へpushします。公開可能なこのキーだけを入れます。secret key、service_role key、JWT、パスワードは入れません。
 2. Supabaseの設定を、以下の正確な2値にします。
 
    | 設定場所 | 設定 | 値 |
@@ -45,6 +45,6 @@ GitHub Pagesの公開元は **Deploy from a branch → main → / (root)**。ビ
 
 2026-10-14 13:42:39 UTC、公開同意画面の実HTTP GETは **200 / `text/html; charset=utf-8`**。JS・CSS・configもGET 200で、配信内容はcommit済みsourceと一致しました。
 
-現在の`config.js`はPublishable keyのplaceholderです。本人設定と実際のブラウザー・ChatGPT OAuth認証は未検証であり、公開配信の成功を実機認証のPASSとはしません。
+Publishable key設定後、このprojectの`GET /auth/v1/settings`は200で、GitHub PagesのOriginに対するCORS応答も確認済みです（キー値は診断出力に表示していません）。本人設定と実際のブラウザー・ChatGPT OAuth認証は未検証であり、公開配信・公開Auth APIの成功を実機認証のPASSとはしません。
 
 公式資料: [OAuth Serverセットアップ](https://supabase.com/docs/guides/auth/oauth-server/getting-started)、[OAuthフロー](https://supabase.com/docs/guides/auth/oauth-server/oauth-flows)、[Edge FunctionsのHTML配信制限](https://supabase.com/docs/guides/functions/http-methods)。
