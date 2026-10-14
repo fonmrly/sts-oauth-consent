@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src https://bvmumhpylsllbvhvymns.supabase.co/auth/v1/; base-uri 'none'; form-action 'none'; object-src 'none'">
+  <title>STSへの接続を確認</title>
+  <link rel="stylesheet" href="consent.css">
+  <script src="../config.js" defer></script>
+  <script src="consent.js" defer></script>
+</head>
+<body>
+  <main>
+    <p class="eyebrow">SOL TASK STORE</p>
+    <h1>STSへの接続を確認</h1>
+    <p id="status" role="status" aria-live="polite">認証リクエストを確認しています。</p>
+
+    <form id="login-form" autocomplete="off" hidden>
+      <h2>本人としてログイン</h2>
+      <p>STSのSupabase Authアカウントでログインしてください。</p>
+      <label for="email">メールアドレス</label>
+      <input id="email" type="email" autocomplete="off" autocapitalize="none" spellcheck="false" required>
+      <label for="password">パスワード</label>
+      <input id="password" type="password" autocomplete="off" required>
+      <button id="login-button" type="submit">ログインして接続内容を確認</button>
+    </form>
+
+    <section id="consent" aria-labelledby="consent-heading" hidden>
+      <h2 id="consent-heading" tabindex="-1">この接続を許可しますか？</h2>
+      <dl>
+        <dt>クライアント名</dt>
+        <dd id="client-name" dir="auto"></dd>
+        <dt>クライアントID</dt>
+        <dd id="client-id" class="technical"></dd>
+        <dt>リダイレクト先</dt>
+        <dd id="redirect-uri" class="technical"></dd>
+      </dl>
+      <h3>要求されているscope</h3>
+      <ul id="scopes"></ul>
+      <p class="note">クライアント名と戻り先を確認してください。許可すると、このクライアントに要求されたアクセスが付与されます。</p>
+      <div class="actions">
+        <button id="deny" class="secondary" type="button">拒否する</button>
+        <button id="approve" type="button">許可する</button>
+      </div>
+      <button id="forget" class="text-button" type="button">ログイン情報を消して戻る</button>
+    </section>
+
+    <p class="privacy">入力したパスワードと認証トークンは、このページのメモリだけで扱います。ページを閉じる・再読み込みすると、もう一度ログインが必要です。</p>
+    <noscript>ログインと同意にはJavaScriptが必要です。有効にして認証をやり直してください。</noscript>
+  </main>
+</body>
+</html>
